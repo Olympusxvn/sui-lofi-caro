@@ -14,6 +14,7 @@
 
 <br />
 
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-sulogame.vercel.app-000?style=for-the-badge&logo=vercel&logoColor=white)](https://sulogame.vercel.app/)
 [![Suiscan](https://img.shields.io/badge/⛓_Suiscan-Package-000?style=for-the-badge)](https://suiscan.xyz/mainnet/object/0x3a481fe1977237ae7b74b23d03817616e0a967d61e48f4f726d315e5329f1278)
 [![GitHub](https://img.shields.io/badge/GitHub-Olympusxvn%2Fsui--lofi--caro-181717?style=for-the-badge&logo=github)](https://github.com/Olympusxvn/sui-lofi-caro)
 [![Docs](https://img.shields.io/badge/📚_Docs-Spec-22D3EE?style=for-the-badge)](docs/SPEC.md)
@@ -104,7 +105,7 @@ Two players stake SUI in an on-chain vault. First to five in a row on the 15×15
 - **Live game**: connect a Slush / standard Sui wallet, create or join a room, stake 0.1 SUI or more.
 - **5-minute turn timer** with timeout claim; victory / draw modal links straight to Suiscan.
 
-> Website deploy is pending (Vercel team-scope 403, same as the project's earlier deploys). The frontend builds clean and runs locally; see [Checklist](#-checklist).
+> Play it live at [sulogame.vercel.app](https://sulogame.vercel.app/) (mainnet).
 
 ---
 
@@ -253,7 +254,7 @@ node frontend/scripts/update-treasury.mjs <0x...64-hex-address> [--dry]
 - [x] MIT License
 - [ ] Demo video, 3–5 minutes (YouTube link preferred)
 - [ ] Project logo, 1:1 (the Lofi yeti head PNG from the LOFI.rar asset pack; in the app it is embedded as a data URI in `frontend/src/components/pieceImages.ts`)
-- [ ] Website (deploy the frontend; Vercel team-scope 403, deploy from a machine with team access)
+- [x] Website: [sulogame.vercel.app](https://sulogame.vercel.app/) (live 2026-11-26, verified rendering in browser)
 
 ---
 
