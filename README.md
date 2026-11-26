@@ -87,7 +87,7 @@ victory/draw modal with Suiscan links, and a free off-chain practice board (no w
 
 ## Submission checklist (CLAY Hackathon)
 
-- [ ] Public GitHub repo (this one)
+- [x] Public GitHub repo (this one)
 - [ ] Demo video, 3–5 minutes (YouTube link preferred)
 - [ ] Project logo, 1:1 (the Lofi yeti head PNG from the LOFI.rar asset pack; in the app it is embedded as a data URI in `frontend/src/components/pieceImages.ts`)
 - [ ] Website (deploy the frontend; Vercel works)
