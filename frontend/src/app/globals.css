@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-frost-950: #0b192c;
+  --color-frost-900: #0f172a;
+  --color-ice-400: #38bdf8;
+  --color-ice-500: #0ea5e9;
+  --color-yeti-400: #22d3ee;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0b192c;
+  color: #f8fafc;
+  font-family: var(--font-sans);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Frosted glass card */
+.glass {
+  background: rgb(255 255 255 / 0.06);
+  border: 1px solid rgb(56 189 248 / 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.board-tile {
+  transition:
+    background-color 0.12s ease,
+    transform 0.12s ease;
+}
+
+.board-tile:hover:not(:disabled) {
+  background-color: rgb(34 211 238 / 0.25);
+}
+
+@keyframes shatter {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.piece-pop {
+  animation: shatter 0.25s ease-out;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}

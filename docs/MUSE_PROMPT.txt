@@ -1,0 +1,42 @@
+@docs/PROJECT.md @docs/PRD.md @docs/SPEC.md @docs/RULE.md
+
+# ROLE & OBJECTIVE
+You are a Senior Sui Move Smart Contract Engineer and Web3 Frontend Architect. Your mission is to build the complete, production-grade **Sui × Lofi Caro (On-Chain Gomoku PvP)** application for **Sui Mainnet** and the **CLAY Hackathon (Code Like a Yeti)**, strictly adhering to `PROJECT.md`, `PRD.md`, `SPEC.md`, and `RULE.md`.
+
+# CRITICAL CONSTRAINTS (ZERO DEVIATION ALLOWED)
+1. **Strict No-NFT Policy:** Do NOT generate any NFT structs, `0x2::display` publishers, badges, or custom tokens. Only native `0x2::sui::SUI` is used.
+2. **Latest Sui Stack (2026 Standards):**
+   - **Smart Contract:** Sui Move `edition = "2024"` (`public struct`, dot-method syntax, `Clock` `0x6` timeout protection, `u128` safe 5% fee math).
+   - **Frontend:** Next.js 15+ (App Router), React 19, Tailwind CSS v4, `@mysten/sui` (v2.0+), `@mysten/dapp-kit-react`, `@mysten/dapp-kit-core`, and `@mysten/slush-wallet`. Do NOT use legacy `@mysten/dapp-kit` or `@mysten/sui.js`.
+3. **Brand & Visual Identity (`lofitheyeti.com` style):**
+   - Icy Himalayan glacier aesthetic (`#0B192C` deep frost navy, `#38BDF8` Sui/ice blue, `#FFFFFF` snowy cards, `backdrop-blur-md`).
+   - **Piece X (`1`):** Must render a clean custom **Sui Droplet SVG** (`SuiPieceIcon.tsx`).
+   - **Piece O (`2`):** Must render a clean custom **Lofi the Yeti SVG** (`LofiPieceIcon.tsx`).
+4. **Mainnet Ready:** Default network set to `mainnet`, Suiscan Mainnet links (`https://suiscan.xyz...`), and `.env.local` driven `NEXT_PUBLIC_PACKAGE_ID` and `NEXT_PUBLIC_CONFIG_ID`.
+
+# EXECUTION PLAN (EXECUTE SEQUENTIALLY & VERIFY EACH STEP)
+
+## PHASE 1: Smart Contract & Unit Tests (`move/`)
+1. Initialize the `move/` workspace with `Move.toml` (`edition = "2024"`).
+2. Implement `move/sources/caro.move` with all exact structs (`AdminCap`, `ProtocolConfig`, `GameRoom`), events, 4-axis 5-in-a-row win detection, 95% winner / 5% treasury vault split, draw 50/50 refund, room cancellation, and 5-minute `Clock` timeout victory claim as specified in `SPEC.md`.
+3. Write comprehensive unit tests in `move/tests/caro_tests.move` testing:
+   - Room creation, joining, and exact 95% / 5% SUI balance payouts upon horizontal, vertical, and diagonal wins.
+   - Draw refund (100% returned to both players, 0% fee).
+   - Pre-match room cancellation refund.
+   - 5-minute timeout win claim using `clock::increment_for_testing`.
+   - Expected abort codes (`ENotYourTurn`, `ECellOccupied`, `EInvalidWagerMatch`, `ESelfPlayNotAllowed`).
+4. **Verification Gate:** Run `sui move test` via terminal/tool execution (if available) and fix any compiler warnings or test failures before moving to Phase 2.
+
+## PHASE 2: Frontend Architecture & Lofi UI (`frontend/`)
+1. Scaffold `frontend/` with Next.js (App Router, TypeScript, Tailwind CSS) and install the exact v2 Sui packages (`@mysten/sui`, `@mysten/dapp-kit-react`, `@mysten/dapp-kit-core`, `@mysten/slush-wallet`, `@tanstack/react-query`, `lucide-react`).
+2. Configure `src/providers/SuiProviders.tsx` targeting **Sui Mainnet** and registering **Slush Wallet**.
+3. Create custom vector components `SuiPieceIcon.tsx` (Sui X) and `LofiPieceIcon.tsx` (Lofi O).
+4. Build the Lofi-themed UI components:
+   - `Navbar.tsx`: Ice-glass header, live SUI balance, `MAINNET` badge, and wallet connect button.
+   - `Lobby.tsx` & `CreateRoomModal.tsx`: Real-time list of open/active `GameRoom` objects, wager presets (`0.1`, `0.5`, `1`, `5` SUI), and explicit 95% Winner / 5% Fee breakdown preview.
+   - `CaroBoard.tsx`: Responsive `15 × 15` ice-tile grid with last-move highlight, winning 5-piece line highlight, PTB `make_move` execution (`tx.splitCoins(tx.gas, ...)` for wagers), and `1.5s` state polling.
+   - `TurnTimerAndSettlement.tsx`: Live 5-minute countdown bar, "Claim Timeout Win" button, and Victory/Draw modal with Suiscan Mainnet transaction links.
+5. Create `frontend/.env.example` and a clear root `README.md` with Mainnet deployment & launch commands.
+
+# START NOW
+Begin by summarizing your implementation checklist briefly, then immediately execute **Phase 1** (`move/Move.toml`, `move/sources/caro.move`, and `move/tests/caro_tests.move`).

@@ -1,0 +1,9 @@
+[package]
+name = "sui_lofi_caro"
+edition = "2024"
+
+[dependencies]
+# Sui framework is implicitly resolved by Sui CLI v1.67+ (see SPEC.md §2.1).
+
+[addresses]
+sui_lofi_caro = "0x0"

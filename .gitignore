@@ -1,0 +1,21 @@
+# Dependencies & build output
+node_modules/
+.next/
+out/
+dist/
+move/build/
+
+# Secrets — NEVER commit these
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Sui local state (keystore lives here on your machine, never in git)
+.sui/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
